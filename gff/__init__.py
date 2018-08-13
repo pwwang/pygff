@@ -2,7 +2,7 @@
 
 class Gff(object):
 
-	def __init__(gfffile):
+	def __init__(self, gfffile):
 		if gfffile.endswith('.gz'):
 			import gzip
 			self.gff = gzip.open(gfffile)
@@ -22,7 +22,7 @@ class Gff(object):
 		ret = {
 			'seqid'     : parts[0],
 			'source'    : parts[1],
-			'type'      : parts[2]
+			'type'      : parts[2],
 			'start'     : parts[3],
 			'end'       : parts[4],
 			'score'     : parts[5],
@@ -46,6 +46,7 @@ class Gff(object):
 			if value[0] == '"' and value[-1] == '"':
 				value = value[1:-1]
 			ret['attributes'][key] = value
+		return ret
 		
 	def next(self):
 		line = self.gff.readline().rstrip('\r\n')
