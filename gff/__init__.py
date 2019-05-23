@@ -17,6 +17,25 @@ class Gff(object):
 		return self
 
 	@staticmethod
+	def toBed(gfffile, name = '{attributes[gene_id]}'):
+		gff = Gff(gfffile)
+		for g in gff:
+			yield {
+				'CHR'   : g['seqid'],
+				'START' : g['start'],
+				'END'   : g['end'],
+				'NAME'  : name(g) if callable(g) else name.format(**g),
+				'SCORE' : g['score'],
+				'STRAND': g['strand'],
+			}
+
+	@staticmethod
+	def toBedfile(gfffile, bedfile, name = '{g[attributes][gene_id]}'):
+		with open(bedfile, 'w') as f:
+			for g in Gff.toBed(gfffile, name):
+				f.write("{CHR}\t{START}\t{END}\t{NAME}\t{SCORE}\t{STRAND}\n".format(**g))
+
+	@staticmethod
 	def _parse(line):
 		parts = line.split('\t')
 		ret = {
@@ -47,9 +66,12 @@ class Gff(object):
 				value = value[1:-1]
 			ret['attributes'][key] = value
 		return ret
-		
+
+
 	def next(self):
 		line = self.gff.readline().rstrip('\r\n')
 		if not line:
 			raise StopIteration()
 		return Gff._parse(line)
+
+	__next__ = next
