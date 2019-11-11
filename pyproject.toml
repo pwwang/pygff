@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "pygff"
+name = "python-gff"
 version = "0.1.0"
 description = "A more general GFF/GTF parser"
 authors = ["pwwang <pwwang@pwwang.com>"]
