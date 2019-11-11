@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "pygff"
+version = "0.1.0"
+description = "A more general GFF/GTF parser"
+authors = ["pwwang <pwwang@pwwang.com>"]
+license = "MIT"
+packages = [{include = 'gff/*.py'}]
+
+[tool.poetry.dependencies]
+python = "^3.6"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
