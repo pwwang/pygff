@@ -1,4 +1,4 @@
-from collections import OrderedBox
+from collections import OrderedDict
 
 class Gff(object):
 
@@ -47,7 +47,7 @@ class Gff(object):
 			'score'     : parts[5],
 			'strand'    : parts[6],
 			'phase'     : parts[7],
-			'attributes': OrderedBox()
+			'attributes': OrderedDict()
 		}
 		# need more riguous check
 		# gtf
