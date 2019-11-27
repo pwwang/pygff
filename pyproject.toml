@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "python-gff"
-version = "0.1.2"
+version = "0.1.3"
 description = "A more general GFF/GTF parser"
 authors = ["pwwang <pwwang@pwwang.com>"]
 license = "MIT"
