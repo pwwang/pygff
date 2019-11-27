@@ -70,6 +70,8 @@ class Gff(object):
 
 	def next(self):
 		line = self.gff.readline().rstrip('\r\n')
+		if line.startswith('#'):
+			return self.next()
 		if not line:
 			raise StopIteration()
 		return Gff._parse(line)
